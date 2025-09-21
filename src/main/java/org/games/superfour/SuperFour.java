@@ -1,5 +1,6 @@
 package org.games.superfour;
 
+import org.games.superfour.bot.BotPlayer;
 import org.games.superfour.enums.Player;
 import org.games.superfour.utils.SuperFourUtils;
 
@@ -24,7 +25,8 @@ public class SuperFour {
             board[0][col.getAsInt()] = Player.HUMAN.id;
         }
         // Add Bot input
-        board[0][4] = Player.BOT.id;
+        int botColumn = BotPlayer.play(board);
+        board[0][botColumn] = Player.BOT.id;
 
         SuperFourUtils.printBoard(board);
     }
