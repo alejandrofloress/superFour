@@ -1,7 +1,8 @@
-package org.games;
+package org.games.superFour.utils;
 
 
-
+import org.games.superfour.utils.Main;
+import org.games.superfour.utils.SuperFourUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,15 +11,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class MainTest {
+public class SuperFourUtilsTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
     @BeforeEach
     void setUp() {
+        // Capture output
         System.setOut(new PrintStream(outContent));
     }
 
@@ -28,8 +31,14 @@ public class MainTest {
     }
 
     @Test
-    void testMain() {
-        Main.main(new String[]{});
-        assertEquals("Hello world!", outContent.toString());
+    void testPrintBoard() {
+        int[][] board = new int[6][7]; // all zeros
+
+        SuperFourUtils.printBoard(board);
+
+        String output = outContent.toString();
+        assertTrue(output.contains("-"), "Should contain empty cells");
+        assertTrue(output.contains("1 2 3 4 5 6 7"), "Should contain column numbers");
+
     }
 }
