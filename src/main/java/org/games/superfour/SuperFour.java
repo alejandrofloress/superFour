@@ -1,11 +1,15 @@
 package org.games.superfour;
 
-import org.games.superfour.bot.BotPlayer;
+
 import org.games.superfour.enums.PlayerEnum;
 import org.games.superfour.utils.SuperFourUtils;
 
 import java.io.BufferedReader;
-import java.util.OptionalInt;
+
+import static org.games.superfour.utils.HandleTurn.playBotTurn;
+import static org.games.superfour.utils.HandleTurn.playHumanTurn;
+import static org.games.superfour.utils.SuperFourUtils.checkForWinner;
+import static org.games.superfour.utils.SuperFourUtils.printBoard;
 
 
 public class SuperFour {
@@ -13,52 +17,18 @@ public class SuperFour {
         boolean gameIsActive = true;
         int[][] board = SuperFourUtils.getBoard();
         while (gameIsActive) {
-            SuperFourUtils.printBoard(board);
+            printBoard(board);
             // User turn
-            playHumanTurn(reader, board);
-            if (SuperFourUtils.hasWinner(board)) break;
+            CellMove humanCellMove = playHumanTurn(reader, board);
+            if (checkForWinner(board, humanCellMove, PlayerEnum.HUMAN)) break;
 
             // Bot turn
-            playBotTurn(board);
-            if (SuperFourUtils.hasWinner(board)) break;
+            CellMove botCellMove = playBotTurn(board);
+            if (checkForWinner(board, botCellMove, PlayerEnum.BOT)) break;
 
             System.out.println();
         }
     }
 
-    private void playHumanTurn(BufferedReader reader, int[][] board) throws Exception {
-        boolean turnTaken = false;
-
-        while (!turnTaken) {
-            System.out.println();
-            System.out.print("Your turn! Pick a column between 1 and 7:");
-
-            String inputCol = reader.readLine().trim();
-            OptionalInt col = SuperFourUtils.getAndValidateColumnInput(inputCol);
-
-            if (col.isEmpty()) {
-                System.out.println("Invalid input! Enter a number between 1 and 7.");
-                continue;
-            }
-            OptionalInt row = SuperFourUtils.dropPiece(board, col.getAsInt());
-            if (row.isPresent()) {
-                board[row.getAsInt()][col.getAsInt()] = PlayerEnum.HUMAN.id;
-                turnTaken = true;
-            } else {
-                System.out.print("The column " +col + " is full!, choose another one.");
-            }
-        }
-    }
-
-    private void playBotTurn(int[][] board) throws Exception {
-        int colBot = BotPlayer.play(board);
-        OptionalInt rowBot = SuperFourUtils.dropPiece(board, colBot);
-        if (rowBot.isPresent()) {
-            int rowBotBoard = rowBot.getAsInt();
-            board[rowBotBoard][colBot] = PlayerEnum.BOT.id;
-            System.out.println("************************************************************");
-            System.out.println("Bot plays column:" + (colBot + 1));
-        }
-    }
 
 }
