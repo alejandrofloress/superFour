@@ -1,7 +1,6 @@
 package org.games.superFour.utils;
 
 
-import org.games.superfour.utils.Main;
 import org.games.superfour.utils.SuperFourUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

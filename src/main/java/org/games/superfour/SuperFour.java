@@ -1,7 +1,9 @@
-package org.games.superfour.utils;
+package org.games.superfour;
 
-public class Main {
-    public static void main(String[] args) {
+import org.games.superfour.utils.SuperFourUtils;
+
+public class SuperFour {
+    public void runGame() {
         int[][] board = new int[6][7];
 
         board[0][0] = 1;
@@ -9,10 +11,6 @@ public class Main {
         board[5][5] = 6;
         board[5][6] = 7;
 
-
         SuperFourUtils.printBoard(board);
-
     }
-
-
 }
