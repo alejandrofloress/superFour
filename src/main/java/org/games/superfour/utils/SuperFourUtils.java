@@ -6,11 +6,11 @@ import org.games.superfour.enums.PlayerEnum;
 import java.util.OptionalInt;
 
 public class SuperFourUtils {
-   private static final int COLS = BoardSizeConstant.COLS;
    private static final int ROWS = BoardSizeConstant.ROWS;
+    private static final int COLS = BoardSizeConstant.COLS;
 
    public static int [][] getBoard(){
-        return new int[COLS][ROWS];
+        return new int[ROWS][COLS];
     }
 
     public static OptionalInt getAndValidateColumnInput(String inputValue) {
@@ -27,9 +27,10 @@ public class SuperFourUtils {
     }
 
     public static void printBoard(int[][] board) {
-        for (int row = ROWS -1 ; row >= 0; row--) {
+        for (int row = ROWS -1; row >= 0; row--) {
             for (int col = 0; col < COLS; col++) {
-                PlayerEnum playerEnum = PlayerEnum.fromId(board[row][col]);
+                int cellValue = board[row][col];
+                PlayerEnum playerEnum = PlayerEnum.fromId(cellValue);
                 System.out.print(printCellValue(playerEnum));
             }
             System.out.println();
