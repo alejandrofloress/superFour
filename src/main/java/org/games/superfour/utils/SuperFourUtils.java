@@ -59,7 +59,11 @@ public class SuperFourUtils {
                 return OptionalInt.of(row);
             }
         }
-        //System.out.print("The column " +col + " is full!, choose another one.");
         return OptionalInt.empty();
+    }
+
+    public static boolean hasWinner(int[][] board) {
+        //TODO
+        return false;
     }
 }
