@@ -1,5 +1,7 @@
 package org.games.superfour.utils;
 
+import org.games.superfour.enums.Player;
+
 import java.util.OptionalInt;
 
 public class SuperFourUtils {
@@ -20,8 +22,8 @@ public class SuperFourUtils {
     public static void printBoard(int[][] board) {
         for (int row = 5; row >= 0; row--) {
             for (int col = 0; col < 7; col++) {
-                int cellValue = board[row][col];
-                System.out.print(printCellValue(cellValue));
+                Player player = Player.fromId(board[row][col]);
+                System.out.print(printCellValue(player));
             }
             System.out.println();
         }
@@ -32,14 +34,7 @@ public class SuperFourUtils {
         System.out.println();
     }
 
-    public static String printCellValue(int cellValue) {
-        if (cellValue == 1) {
-            return "X ";
-        } else
-        if (cellValue == 2) {
-            return "0 ";
-        } else {
-            return "- ";
-        }
+    public static String printCellValue(Player player) {
+        return player.symbol();
     }
 }

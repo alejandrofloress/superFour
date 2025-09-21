@@ -1,5 +1,6 @@
 package org.games.superfour;
 
+import org.games.superfour.enums.Player;
 import org.games.superfour.utils.SuperFourUtils;
 
 import java.io.BufferedReader;
@@ -20,10 +21,10 @@ public class SuperFour {
         if (col.isEmpty()) {
             System.out.println("Invalid input! Enter a column number between 1 and 7.");
         } else {
-            board[0][col.getAsInt()] = 1;
+            board[0][col.getAsInt()] = Player.HUMAN.id;
         }
         // Add Bot input
-        board[0][4] = 2;
+        board[0][4] = Player.BOT.id;
 
         SuperFourUtils.printBoard(board);
     }
