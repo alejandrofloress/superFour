@@ -1,9 +1,6 @@
 package org.games.superfour;
 
-
 import org.games.superfour.enums.PlayerEnum;
-import org.games.superfour.utils.SuperFourUtils;
-
 import java.io.BufferedReader;
 
 import static org.games.superfour.utils.HandleTurn.playBotTurn;
@@ -20,11 +17,11 @@ public class SuperFour {
             printBoard(board);
             // User turn
             CellMove humanCellMove = playHumanTurn(reader, board);
-            if (checkForWinner(board, humanCellMove, PlayerEnum.HUMAN)) break;
+            if (checkForWinner(board, humanCellMove, PlayerEnum.HUMAN) && totalMoves >= 3) break;
 
             // Bot turn
             CellMove botCellMove = playBotTurn(board);
-            if (checkForWinner(board, botCellMove, PlayerEnum.BOT)) break;
+            if (checkForWinner(board, botCellMove, PlayerEnum.BOT) && totalMoves >= 3) break;
 
             totalMoves++;
             if (!shouldContinue(totalMoves)) {

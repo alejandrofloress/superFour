@@ -76,21 +76,21 @@ public class SuperFourUtilsTest {
 
     @Test
     @DisplayName("First empty row should be 0")
-    void testDropPieceWhenColumnHasSpace() {
+    void testGetAvailableRowWhenColumnHasSpace() {
         int[][] board = SuperFourUtils.getBoard();
-        OptionalInt result = SuperFourUtils.dropPiece(board, 1);
+        OptionalInt result = SuperFourUtils.getAvailableRow(board, 1);
         assertTrue(result.isPresent(), "Expected a row index");
         assertEquals(0, result.getAsInt());
     }
 
     @Test
     @DisplayName("Expected empty when column is full")
-    void testDropPieceWhenColumnIsFull() {
+    void testGetAvailableRowWhenColumnIsFull() {
         int[][] board = SuperFourUtils.getBoard();
         for (int row = 0; row < 6; row++) {
             board[row][0] = 1;
         }
-        OptionalInt result = SuperFourUtils.dropPiece(board, 0);
+        OptionalInt result = SuperFourUtils.getAvailableRow(board, 0);
         assertFalse(result.isPresent());
     }
 }

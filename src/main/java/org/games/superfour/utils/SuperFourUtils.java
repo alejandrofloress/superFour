@@ -57,7 +57,7 @@ public class SuperFourUtils {
      * @param col   the column index
      * @return an OptionalInt with the row index if available, or empty if the column is full
      */
-    public static OptionalInt dropPiece(int[][] board, int col) {
+    public static OptionalInt getAvailableRow(int[][] board, int col) {
         for (int row = 0; row <= 5; row++) {
             if (board[row][col] == 0) {
                 return OptionalInt.of(row);
