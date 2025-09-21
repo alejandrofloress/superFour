@@ -1,7 +1,7 @@
 package org.games.superFour.utils;
 
 
-import org.games.superfour.enums.Player;
+import org.games.superfour.enums.PlayerEnum;
 import org.games.superfour.utils.SuperFourUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -61,17 +61,17 @@ public class SuperFourUtilsTest {
 
     @Test
     void testPrintCellValue_PlayerX() {
-        assertEquals("X ", SuperFourUtils.printCellValue(Player.HUMAN));
+        assertEquals("X ", SuperFourUtils.printCellValue(PlayerEnum.HUMAN));
     }
 
     @Test
     void testPrintCellValue_PlayerO() {
-        assertEquals("0 ", SuperFourUtils.printCellValue(Player.BOT));
+        assertEquals("0 ", SuperFourUtils.printCellValue(PlayerEnum.BOT));
     }
 
     @Test
     void testPrintCellValue_Empty() {
-        assertEquals("- ", SuperFourUtils.printCellValue(Player.EMPTY));
+        assertEquals("- ", SuperFourUtils.printCellValue(PlayerEnum.EMPTY));
     }
 
 }

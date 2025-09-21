@@ -1,6 +1,6 @@
 package org.games.superfour.enums;
 
-public enum Player {
+public enum PlayerEnum {
     EMPTY(0, "- "),
     HUMAN(1, "X "),
     BOT(2, "0 "); // (used 'O' instead of zero)
@@ -8,7 +8,7 @@ public enum Player {
     public final int id;
     private final String symbol;
 
-    Player(int id, String symbol) {
+    PlayerEnum(int id, String symbol) {
         this.id = id;
         this.symbol = symbol;
     }
@@ -17,7 +17,7 @@ public enum Player {
         return symbol;
     }
 
-    public static Player fromId(int id) {
+    public static PlayerEnum fromId(int id) {
         return switch (id) {
             case 1 -> HUMAN;
             case 2 -> BOT;

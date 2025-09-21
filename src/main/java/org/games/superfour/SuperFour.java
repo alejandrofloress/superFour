@@ -1,7 +1,8 @@
 package org.games.superfour;
 
 import org.games.superfour.bot.BotPlayer;
-import org.games.superfour.enums.Player;
+import org.games.superfour.constant.BoardSizeConstant;
+import org.games.superfour.enums.PlayerEnum;
 import org.games.superfour.utils.SuperFourUtils;
 
 import java.io.BufferedReader;
@@ -11,7 +12,7 @@ import java.util.OptionalInt;
 public class SuperFour {
     public void runGame() throws Exception {
 
-        int[][] board = new int[6][7];
+        int[][] board = new int[BoardSizeConstant.ROWS][BoardSizeConstant.COLS];
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -22,11 +23,11 @@ public class SuperFour {
         if (col.isEmpty()) {
             System.out.println("Invalid input! Enter a column number between 1 and 7.");
         } else {
-            board[0][col.getAsInt()] = Player.HUMAN.id;
+            board[0][col.getAsInt()] = PlayerEnum.HUMAN.id;
         }
         // Add Bot input
         int botColumn = BotPlayer.play(board);
-        board[0][botColumn] = Player.BOT.id;
+        board[0][botColumn] = PlayerEnum.BOT.id;
 
         SuperFourUtils.printBoard(board);
     }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BotPlayerTest {
+public class BotPlayerEnumTest {
 
     @Test
     @DisplayName("Bot should always select a column between 0 and 6")
