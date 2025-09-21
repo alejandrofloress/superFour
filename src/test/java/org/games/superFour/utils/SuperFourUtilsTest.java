@@ -57,4 +57,20 @@ public class SuperFourUtilsTest {
         assertEquals(OptionalInt.empty(), SuperFourUtils.getAndValidateColumnInput("abc"));
         assertEquals(OptionalInt.empty(), SuperFourUtils.getAndValidateColumnInput(""));
     }
+
+    @Test
+    void testPrintCellValue_PlayerX() {
+        assertEquals("X ", SuperFourUtils.printCellValue(1));
+    }
+
+    @Test
+    void testPrintCellValue_PlayerO() {
+        assertEquals("0 ", SuperFourUtils.printCellValue(2));
+    }
+
+    @Test
+    void testPrintCellValue_Empty() {
+        assertEquals("- ", SuperFourUtils.printCellValue(0));
+    }
+
 }

@@ -22,6 +22,9 @@ public class SuperFour {
         } else {
             board[0][col.getAsInt()] = 1;
         }
+        // Add Bot input
+        board[0][4] = 2;
+
         SuperFourUtils.printBoard(board);
     }
 }
