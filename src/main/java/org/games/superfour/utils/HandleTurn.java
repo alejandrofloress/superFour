@@ -7,6 +7,9 @@ import org.games.superfour.enums.PlayerEnum;
 import java.io.BufferedReader;
 import java.util.OptionalInt;
 
+import static org.games.superfour.utils.SuperFourUtils.dropPiece;
+import static org.games.superfour.utils.SuperFourUtils.getAndValidateColumnInput;
+
 public class HandleTurn {
     public static CellMove playHumanTurn(BufferedReader reader, int[][] board) throws Exception {
         boolean turnTaken = false;
@@ -18,13 +21,13 @@ public class HandleTurn {
             System.out.print("Your turn! Pick a column between 1 and 7:");
 
             String inputCol = reader.readLine().trim();
-            OptionalInt col = SuperFourUtils.getAndValidateColumnInput(inputCol);
+            OptionalInt col = getAndValidateColumnInput(inputCol);
 
             if (col.isEmpty()) {
                 System.out.println("Invalid input! Enter a number between 1 and 7.");
                 continue;
             }
-            OptionalInt row = SuperFourUtils.dropPiece(board, col.getAsInt());
+            OptionalInt row = dropPiece(board, col.getAsInt());
             if (row.isPresent()) {
                 rowMove =  row.getAsInt();
                 colMove = col.getAsInt();
@@ -41,7 +44,7 @@ public class HandleTurn {
     public static CellMove playBotTurn(int[][] board) {
         int rowBotBoard = 0;
         int colBot = BotPlayer.play(board);
-        OptionalInt rowBot = SuperFourUtils.dropPiece(board, colBot);
+        OptionalInt rowBot = dropPiece(board, colBot);
         if (rowBot.isPresent()) {
             rowBotBoard = rowBot.getAsInt();
             board[rowBotBoard][colBot] = PlayerEnum.BOT.id;

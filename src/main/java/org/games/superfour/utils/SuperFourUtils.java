@@ -68,6 +68,8 @@ public class SuperFourUtils {
 
     public static boolean checkForWinner(int[][] board, CellMove playerCellMove, PlayerEnum player) {
         if(WinnerChecker.hasWinner(board, playerCellMove)){
+            System.out.println("******************************************");
+            printBoard(board);
             System.out.println(player +" is the winner!");
             return true;
         }
