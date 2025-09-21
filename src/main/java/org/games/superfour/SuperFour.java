@@ -8,14 +8,14 @@ import java.io.BufferedReader;
 
 import static org.games.superfour.utils.HandleTurn.playBotTurn;
 import static org.games.superfour.utils.HandleTurn.playHumanTurn;
-import static org.games.superfour.utils.SuperFourUtils.checkForWinner;
-import static org.games.superfour.utils.SuperFourUtils.printBoard;
+import static org.games.superfour.utils.SuperFourUtils.*;
 
 
 public class SuperFour {
     public void runGame(BufferedReader reader) throws Exception {
         boolean gameIsActive = true;
-        int[][] board = SuperFourUtils.getBoard();
+        int totalMoves = 0;
+        int[][] board = getBoard();
         while (gameIsActive) {
             printBoard(board);
             // User turn
@@ -26,6 +26,10 @@ public class SuperFour {
             CellMove botCellMove = playBotTurn(board);
             if (checkForWinner(board, botCellMove, PlayerEnum.BOT)) break;
 
+            totalMoves++;
+            if (!shouldContinue(totalMoves)) {
+                gameIsActive = false;
+            }
             System.out.println();
         }
     }

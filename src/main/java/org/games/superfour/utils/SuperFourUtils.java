@@ -75,4 +75,12 @@ public class SuperFourUtils {
         }
         return false;
     }
+
+    public static boolean shouldContinue(int totalMoves) {
+        if (totalMoves > 21) {
+            System.out.println("No winners, keep playing!");
+            return false;
+        }
+        return true;
+    }
 }
