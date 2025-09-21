@@ -14,16 +14,14 @@ public class SuperFour {
         int[][] board = SuperFourUtils.getBoard();
         while (gameIsActive) {
             SuperFourUtils.printBoard(board);
-
+            // User turn
             playHumanTurn(reader, board);
             if (SuperFourUtils.hasWinner(board)) break;
 
-            // Add Bot input
-            int botColumn = BotPlayer.play(board);
-            board[0][botColumn] = PlayerEnum.BOT.id;
+            // Bot turn
+            playBotTurn(board);
             if (SuperFourUtils.hasWinner(board)) break;
 
-            SuperFourUtils.printBoard(board);
             System.out.println();
         }
     }
@@ -49,6 +47,17 @@ public class SuperFour {
             } else {
                 System.out.print("The column " +col + " is full!, choose another one.");
             }
+        }
+    }
+
+    private void playBotTurn(int[][] board) throws Exception {
+        int colBot = BotPlayer.play(board);
+        OptionalInt rowBot = SuperFourUtils.dropPiece(board, colBot);
+        if (rowBot.isPresent()) {
+            int rowBotBoard = rowBot.getAsInt();
+            board[rowBotBoard][colBot] = PlayerEnum.BOT.id;
+            System.out.println("************************************************************");
+            System.out.println("Bot plays column:" + (colBot + 1));
         }
     }
 
