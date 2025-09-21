@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.OptionalInt;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -39,5 +40,21 @@ public class SuperFourUtilsTest {
         assertTrue(output.contains("-"), "Should contain empty cells");
         assertTrue(output.contains("1 2 3 4 5 6 7"), "Should contain column numbers");
 
+    }
+
+    @Test
+    void testValidInputs() {
+        assertEquals(OptionalInt.of(0), SuperFourUtils.getAndValidateColumnInput("1"));
+        assertEquals(OptionalInt.of(6), SuperFourUtils.getAndValidateColumnInput("7"));
+        assertEquals(OptionalInt.of(3), SuperFourUtils.getAndValidateColumnInput("4"));
+    }
+
+    @Test
+    void testInvalidInputs() {
+        assertEquals(OptionalInt.empty(), SuperFourUtils.getAndValidateColumnInput("0"));
+        assertEquals(OptionalInt.empty(), SuperFourUtils.getAndValidateColumnInput("8"));
+        assertEquals(OptionalInt.empty(), SuperFourUtils.getAndValidateColumnInput("-2"));
+        assertEquals(OptionalInt.empty(), SuperFourUtils.getAndValidateColumnInput("abc"));
+        assertEquals(OptionalInt.empty(), SuperFourUtils.getAndValidateColumnInput(""));
     }
 }

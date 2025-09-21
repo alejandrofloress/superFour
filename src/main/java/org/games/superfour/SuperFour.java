@@ -2,15 +2,26 @@ package org.games.superfour;
 
 import org.games.superfour.utils.SuperFourUtils;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.OptionalInt;
+
 public class SuperFour {
-    public void runGame() {
+    public void runGame() throws Exception {
+
         int[][] board = new int[6][7];
 
-        board[0][0] = 1;
-        board[2][2] = 3;
-        board[5][5] = 6;
-        board[5][6] = 7;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+        System.out.print("Enter column index (1-7): ");
+
+        OptionalInt col = SuperFourUtils.getAndValidateColumnInput(reader.readLine());
+        // Ask user for column
+        if (col.isEmpty()) {
+            System.out.println("Invalid input! Enter a column number between 1 and 7.");
+        } else {
+            board[0][col.getAsInt()] = 1;
+        }
         SuperFourUtils.printBoard(board);
     }
 }

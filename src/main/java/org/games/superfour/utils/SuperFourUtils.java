@@ -1,6 +1,21 @@
 package org.games.superfour.utils;
 
+import java.util.OptionalInt;
+
 public class SuperFourUtils {
+
+    public static OptionalInt getAndValidateColumnInput(String col) {
+        try{
+            int colInput = Integer.parseInt(col.trim());
+            if (colInput > 0 && colInput <= 7){
+                return OptionalInt.of(colInput - 1);
+            } else {
+                return OptionalInt.empty();
+            }
+        } catch (Exception e){
+            return OptionalInt.empty();
+        }
+    }
 
     public static void printBoard(int[][] board) {
         for (int row = 5; row >= 0; row--) {
