@@ -1,6 +1,7 @@
 package org.games.superFour.bot;
 
 import org.games.superfour.bot.BotPlayer;
+import org.games.superfour.utils.SuperFourUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ public class BotPlayerEnumTest {
     @Test
     @DisplayName("Bot should always select a column between 0 and 6")
     void testSelectBotColumnRange() {
-        int[][] board = new int[6][7];
+        int[][] board = SuperFourUtils.getBoard();
 
         for (int i = 0; i < 10; i++) { // run multiple times since it's random
             int col = BotPlayer.play(board);

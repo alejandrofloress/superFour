@@ -9,6 +9,10 @@ public class SuperFourUtils {
    private static final int COLS = BoardSizeConstant.COLS;
    private static final int ROWS = BoardSizeConstant.ROWS;
 
+   public static int [][] getBoard(){
+        return new int[COLS][ROWS];
+    }
+
     public static OptionalInt getAndValidateColumnInput(String inputValue) {
         try{
             int colInput = Integer.parseInt(inputValue.trim());
@@ -39,5 +43,22 @@ public class SuperFourUtils {
 
     public static String printCellValue(PlayerEnum playerEnum) {
         return playerEnum.symbol();
+    }
+
+    /**
+     * Finds the first available row in the given column.
+     *
+     * @param board the game board
+     * @param col   the column index
+     * @return an OptionalInt with the row index if available, or empty if the column is full
+     */
+    public static OptionalInt dropPiece(int[][]  board, int col) {
+        for (int row = 0; row <= 5; row++) {
+            if (board[row][col] == 0) {
+                return OptionalInt.of(row);
+            }
+        }
+        //System.out.print("The column " +col + " is full!, choose another one.");
+        return OptionalInt.empty();
     }
 }

@@ -5,14 +5,14 @@ import org.games.superfour.enums.PlayerEnum;
 import org.games.superfour.utils.SuperFourUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.OptionalInt;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class SuperFourUtilsTest {
@@ -74,4 +74,23 @@ public class SuperFourUtilsTest {
         assertEquals("- ", SuperFourUtils.printCellValue(PlayerEnum.EMPTY));
     }
 
+    @Test
+    @DisplayName("First empty row should be 0")
+    void testDropPieceWhenColumnHasSpace() {
+        int[][] board = SuperFourUtils.getBoard();
+        OptionalInt result = SuperFourUtils.dropPiece(board, 1);
+        assertTrue(result.isPresent(), "Expected a row index");
+        assertEquals(0, result.getAsInt());
+    }
+
+    @Test
+    @DisplayName("Expected empty when column is full")
+    void testDropPieceWhenColumnIsFull() {
+        int[][] board = SuperFourUtils.getBoard();
+        for (int row = 0; row < 6; row++) {
+            board[row][0] = 1;
+        }
+        OptionalInt result = SuperFourUtils.dropPiece(board, 0);
+        assertFalse(result.isPresent());
+    }
 }
