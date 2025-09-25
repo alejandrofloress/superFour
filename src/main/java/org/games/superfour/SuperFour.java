@@ -17,12 +17,15 @@ public class SuperFour {
             printBoard(board);
             // User turn
             CellMove humanCellMove = playHumanTurn(reader, board);
-            if (checkForWinner(board, humanCellMove, PlayerEnum.HUMAN) && totalMoves >= 3) break;
+            if ( totalMoves >= 3) {
+                if (checkForWinner(board, humanCellMove, PlayerEnum.HUMAN)) break;
+            }
 
             // Bot turn
             CellMove botCellMove = playBotTurn(board);
-            if (checkForWinner(board, botCellMove, PlayerEnum.BOT) && totalMoves >= 3) break;
-
+            if ( totalMoves >= 3) {
+                if (checkForWinner(board, botCellMove, PlayerEnum.BOT) ) break;
+            }
             totalMoves++;
             if (!shouldContinue(totalMoves)) {
                 gameIsActive = false;
